@@ -19,17 +19,19 @@ namespace BlackJack.Controls
         private bool isPlaying;
         private DiplsayManager displayManager;
         private bool usingSplit;
+        private bool canSplit;
 
         public GameManager(Deck deck, Player player, Dealer dealer, DiplsayManager displayManager)
         {
             this.deck = deck;
             this.player = player;
-            this.betSize = 0;
+            betSize = 0;
             this.dealer = dealer;
-            this.IsPlayingRound = true;
-            this.isPlaying = true;
+            IsPlayingRound = true;
+            isPlaying = true;
             this.displayManager = displayManager;
-            this.usingSplit = false;
+            usingSplit = false;
+            canSplit = false;
         }
         public int BetSize { get => betSize; set => betSize = value; }
         public bool IsPlaying { get => isPlaying; set => isPlaying = value; }
@@ -39,10 +41,7 @@ namespace BlackJack.Controls
         {
             if (action == "hit")
             {
-                card = deck.GetTopCard();
-                player.IncreaseHand(card);
-                displayManager.DrawCards(card,"player", player.Hand.Count(), usingSplit);
-                displayManager.DrawHandValue(true, player.HandValue);
+                Deal(true);
                 //Console.WriteLine("hit");
             }
             if (action == "stand")
@@ -67,7 +66,17 @@ namespace BlackJack.Controls
             }
             if (action == "split")
             {
-                ManageSplit();
+                if (canSplit)
+                {
+                    canSplit = false;
+                    ManageSplit();
+                }
+                else
+                {
+                    string[] text = { "YOU ARE NOT ABLE TO SPLIT" };
+                    displayManager.DrawText(text);
+                }
+                
                 //Console.WriteLine("split");
             }
             if (action == "quit" || action == "end")
@@ -86,76 +95,74 @@ namespace BlackJack.Controls
         {
             while (dealer.HandValue <= 17)
             {
-                card = deck.GetTopCard();
-                dealer.IncreaseHand(card);
-                displayManager.DrawCards(card,"dealer", dealer.Hand.Count(), false);
+                Deal(false);
             }
         }
 
         public void EndGameCheck()
         {
+            string[] text;
+            text = new string[] {"ERROR"};
             bool isBust = player.HandValue > 21;
             bool hasWon = dealer.HasRevealed && player.HandValue > dealer.HandValue;
-            bool hasWonBust = dealer.HasRevealed && dealer.HandValue>21;
+            bool hasWonBust = dealer.HasRevealed && dealer.HandValue > 21;
             bool isDraw = dealer.HasRevealed && player.HandValue == dealer.HandValue;
             bool hasLost = dealer.HasRevealed && player.HandValue < dealer.HandValue;
             bool hasLostBlackJack = !dealer.HasRevealed && dealer.HandValue == 21 && player.HandValue != dealer.HandValue;
             bool hasWonBlackJack = !dealer.HasRevealed && player.HandValue == 21 && player.HandValue != dealer.HandValue;
             bool isDrawBlackJack = !dealer.HasRevealed && player.HandValue == 21 && player.HandValue == dealer.HandValue;
             if (isBust)
-            { 
+            {
                 //displayManager.CleanTable();
-                Console.WriteLine("It's a bust. Your hand value: " + player.HandValue);
+                text = new []{"It's a bust. Your hand value: " + player.HandValue};
                 EndRound();
             }
             if (hasWon)
             {
-                Console.WriteLine("You've won! Your hand value: " + player.HandValue);
-                Console.WriteLine("Dealer's hand value: " + dealer.HandValue);
+                text = new[]{ "You've won! Your hand value: " + player.HandValue, "Dealer's hand value: " + dealer.HandValue };
                 AwardPlayer();
                 EndRound();
             }
             if (hasWonBust)
             {
-                Console.WriteLine("You've won! Your hand value: " + player.HandValue);
-                Console.WriteLine("Dealer has busted: " + dealer.HandValue);
+                text = new [] { "You've won! Your hand value: " + player.HandValue, "Dealer has busted: " + dealer.HandValue };
                 AwardPlayer();
                 EndRound();
             }
             if (isDraw)
             {
-                Console.WriteLine("It's a draw. Your hand value: " + player.HandValue);
-                Console.WriteLine("Dealer's hand value: " + dealer.HandValue);
+                text = new [] { "It's a draw. Your hand value: " + player.HandValue, "Dealer's hand value: " + dealer.HandValue };
                 UpdateChips(-BetSize);
                 EndRound();
             }
             if (hasLost)
             {
-                Console.WriteLine("You've lost. Your hand value: " + player.HandValue);
-                Console.WriteLine("Dealer's hand value: " + dealer.HandValue);
+                text = new [] { "You've lost. Your hand value: " + player.HandValue, "Dealer's hand value: " + dealer.HandValue };
                 UpdateChips(-BetSize);
                 EndRound();
             }
             if (hasLostBlackJack)
             {
-                Console.WriteLine("You've lost. Your hand value: " + player.HandValue);
-                Console.WriteLine("Dealer has a BlackJack: " + dealer.HandValue);
+                text = new [] { "You've lost. Your hand value: " + player.HandValue, "Dealer has a BlackJack: " + dealer.HandValue };
                 EndRound();
             }
             if (hasWonBlackJack)
             {
-                Console.WriteLine("You've won! It's a BlackJack: " + player.HandValue);
-                Console.WriteLine("Dealer's hand value: " + dealer.HandValue);
+                text = new [] { "You've won! It's a BlackJack: " + player.HandValue, "Dealer's hand value: " + dealer.HandValue };
                 UpdateChips(BetSize / 2);
                 AwardPlayer();
                 EndRound();
             }
             if (isDrawBlackJack)
             {
-                Console.WriteLine("It's a draw! you've got a BlackJack:" + player.HandValue);
-                Console.WriteLine("Dealer has a BlackJack too:" + dealer.HandValue);
+                text = new [] { "It's a draw! you've got a BlackJack:" + player.HandValue, "Dealer has a BlackJack too:" + dealer.HandValue };
                 UpdateChips(-BetSize);
                 EndRound();
+            }
+
+            if (!IsPlayingRound)
+            {
+                displayManager.DrawText(text);
             }
             //Console.WriteLine("Error");
         }
@@ -163,6 +170,8 @@ namespace BlackJack.Controls
         public void EndRound()
         {
             IsPlayingRound = false;
+            string[] text = {"Do you want to play another round? Y/N"};
+            displayManager.DrawText(text);
         }
 
         public void EndApplication()
@@ -189,20 +198,41 @@ namespace BlackJack.Controls
 
         public void DealFirstHand()
         {
-            card = deck.GetTopCard();
-            player.IncreaseHand(card);
-            displayManager.DrawCards(card, "player", player.Hand.Count, player.IsSplit);
-            card = deck.GetTopCard();
-            player.IncreaseHand(card);
-            displayManager.DrawCards(card, "player", player.Hand.Count, player.IsSplit);
-            displayManager.DrawHandValue(true, player.HandValue);
-            card = deck.GetTopCard();
-            dealer.IncreaseHand(card);
-            displayManager.DrawCards(card, "dealer", dealer.Hand.Count, player.IsSplit);
-            card = deck.GetTopCard();
-            dealer.IncreaseHand(card);
-            displayManager.DrawCards(card, "dealer", dealer.Hand.Count, player.IsSplit);
+            Deal(true);
+            Deal(true);
+            Deal(false);
+            Deal(false);
+            CheckSplit();
+        }
 
+        public void Deal(bool isPlayer)
+        {
+            if (isPlayer)
+            {
+                card = deck.GetTopCard();
+                player.IncreaseHand(card);
+                displayManager.DrawCards(card, "player", player.Hand.Count, player.IsSplit);
+                displayManager.DrawHandValue(isPlayer, player.HandValue);
+            }
+            else
+            {
+                card = deck.GetTopCard();
+                dealer.IncreaseHand(card);
+                displayManager.DrawCards(card, "dealer", dealer.Hand.Count, player.IsSplit);
+                displayManager.DrawHandValue(isPlayer, dealer.HandValue);
+            }
+
+        }
+
+        public void CheckSplit()
+        {
+            Card[] cards = player.Hand.ToArray();
+            if (cards[0].Value == cards[1].Value)
+            {
+                canSplit = true;
+                string[] text = { "YOU ARE ABLE TO SPLIT" };
+                displayManager.DrawText(text);
+            }
         }
 
         public void ManageSplit()

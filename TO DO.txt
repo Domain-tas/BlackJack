@@ -4,3 +4,7 @@ implement Split
 implement Aces functionality
 add Rules
 cards have "1" as a rank
+clean inside drawing class?
+1 == 1?!
+A == 1 :(
+10 blogai nusipiešė

@@ -13,11 +13,15 @@ namespace BlackJack.UI
         private int dealerVerticalDrawOffset;
         private int windowHeight;
         private int windowWidth;
+        private int gameHeight;
+        private int gameWidth;
 
         public DiplsayManager()
         {
-            this.windowHeight = 42;
+            this.windowHeight = 52;
             this.windowWidth = 136;
+            gameHeight = 40;
+            gameWidth = 60;
             this.playerVerticalDrawOffset = 26;
             this.dealerVerticalDrawOffset = 6;
             Console.SetWindowSize(windowWidth, windowHeight);
@@ -73,7 +77,7 @@ namespace BlackJack.UI
             }
             else
             {
-                cleanableWidth = windowWidth /3*2;
+                cleanableWidth = windowWidth / 3 * 2;
                 cleanableHeight = 4;
                 leftPosition = windowWidth / 3;
                 verticalPosition = windowHeight / 3 * 2;
@@ -83,10 +87,11 @@ namespace BlackJack.UI
 
         public void DrawText(string[] text)
         {
-            int leftPosition = windowWidth / 3+5;
-            int verticalPosition = windowWidth / 3 * 2;
-            CleanTable("split");
-            TextDrawer textDrawer = new TextDrawer(verticalPosition, leftPosition, text.Length, text);
+            int leftPosition = gameWidth/3;
+            int verticalPosition = gameHeight + 1;
+            //CleanTable("split");
+            TextDrawer textDrawer = new TextDrawer(verticalPosition, leftPosition, text);
+            textDrawer.Draw();
         }
 
         public void DrawOutcome()
@@ -98,9 +103,14 @@ namespace BlackJack.UI
             AnnotationDrawer annotationDrawer = new AnnotationDrawer(dealerVerticalDrawOffset, playerVerticalDrawOffset);
             if (isPlayer)
             {
-                annotationDrawer.updateHandValue(playerVerticalDrawOffset, handValue);
+                annotationDrawer.UpdateHandValue(playerVerticalDrawOffset, handValue, isPlayer);
+            }
+            else
+            {
+                annotationDrawer.UpdateHandValue(dealerVerticalDrawOffset, handValue, isPlayer);
             }
             
+
         }
     }
 }

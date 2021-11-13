@@ -78,7 +78,7 @@ namespace BlackJack
                     //}
                 }
                 //isPlayingRound = false;
-                Console.WriteLine("Do you want to play another round? Y/N");
+                //Console.WriteLine("Do you want to play another round? Y/N");
                 gameManager.Action(userInput.HandleRepeat());
                 isPlaying = gameManager.IsPlaying;
             }

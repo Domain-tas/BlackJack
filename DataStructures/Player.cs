@@ -13,6 +13,7 @@ namespace BlackJack.DataStructures
         private Stack<Card> hand;
         private bool isSplit;
         private int handValue;
+        private Stack<Card> splitHand;
         //private string playerName;
 
         public Player(int chips)

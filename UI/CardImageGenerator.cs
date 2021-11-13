@@ -45,6 +45,7 @@ namespace BlackJack.UI
                         {
                             cardImage[i, j] = card.RankSymbol[0];
                             cardImage[i, j + 1] = card.RankSymbol[1];
+                            j++;
                         }
                         else
                         {
@@ -69,6 +70,7 @@ namespace BlackJack.UI
                     }
                     else
                         cardImage[i, j] = ' ';
+
 
                 }
             }

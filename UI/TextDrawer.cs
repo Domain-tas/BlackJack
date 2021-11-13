@@ -11,21 +11,29 @@ namespace BlackJack.UI
     {
         private int verticalSpace;
         private int horizontalSpace;
-        private int lineCount;
         private string[] text;
-        public TextDrawer(int verticalSpace, int horizontalSpace, int lineCount, string[] text)
+        public TextDrawer(int verticalSpace, int horizontalSpace, string[] text)
         {
             this.horizontalSpace = horizontalSpace;
             this.verticalSpace = verticalSpace;
-            this.lineCount = lineCount;
             this.text = text;
         }
         public void Draw()
         {
-            for (int i = 0; i < lineCount; i++)
+            Clean();
+            for (int i =0; i < text.Length;i++)
             {
-                Console.SetCursorPosition(horizontalSpace,verticalSpace);
+                Console.SetCursorPosition(horizontalSpace,verticalSpace+i);
                 Console.Write(text[i]);
+            }
+        }
+
+        public void Clean()
+        {
+            for (int i = 0; i < text.Length; i++)
+            {
+                Console.SetCursorPosition(horizontalSpace, verticalSpace + i);
+                Console.Write("                                                      ");
             }
         }
     }

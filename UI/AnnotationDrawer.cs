@@ -52,12 +52,19 @@ namespace BlackJack.UI
             Console.Write("#################");
         }
 
-        public void updateHandValue(int verticalOffset, int handValue)
+        public void UpdateHandValue(int verticalOffset, int handValue, bool isPlayer)
         {
             Console.SetCursorPosition(horizontalOffset + 25, verticalOffset - 4);
-            Console.Write("   ");
+            Console.Write("      ");
             Console.SetCursorPosition(horizontalOffset + 25, verticalOffset - 4);
-            Console.Write(handValue);
+            if (isPlayer)
+            {
+                Console.Write(handValue);
+            }
+            else
+            {
+                Console.Write(handValue + " + ?");
+            }
         }
     }
 }

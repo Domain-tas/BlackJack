@@ -8,7 +8,7 @@ namespace BlackJack.Controls
         {
             bool isValid = false;
             string input = Console.ReadLine();
-            while(!isValid)
+            while (!isValid)
             {
                 if (Int32.TryParse(input, out int betAmount))
                 {
@@ -22,7 +22,7 @@ namespace BlackJack.Controls
                 }
             }
             return 0;
-            
+
         }
 
         public string HandleInput()
@@ -34,33 +34,31 @@ namespace BlackJack.Controls
                 if (keyPressed == ConsoleKey.DownArrow)
                 {
                     isValid = true;
-                    return "stand";                  
+                    return "stand";
                 }
-                else if (keyPressed == ConsoleKey.UpArrow)
+                if (keyPressed == ConsoleKey.UpArrow)
                 {
                     isValid = true;
                     return "hit";
                 }
-                else if (keyPressed == ConsoleKey.Spacebar)
+                if (keyPressed == ConsoleKey.Spacebar)
                 {
                     isValid = true;
                     return "split";
                 }
-                else if (keyPressed == ConsoleKey.RightArrow)
+                if (keyPressed == ConsoleKey.RightArrow)
                 {
                     isValid = true;
                     return "double";
                 }
-                else
-                {
-                    //Console.WriteLine("Invalid input. Try again:");
-                    keyPressed = Console.ReadKey().Key;
-                }
+
+                //Console.WriteLine("Invalid input. Try again:");
+                keyPressed = Console.ReadKey().Key;
             }
             return "error";
-            
 
-                
+
+
         }
 
         internal string HandleRepeat()
@@ -74,20 +72,19 @@ namespace BlackJack.Controls
                     isValid = true;
                     return "continue";
                 }
-                else if (keyPressed == ConsoleKey.N)
+                if (keyPressed == ConsoleKey.N)
                 {
                     isValid = true;
                     return "end";
                 }
-                else if (keyPressed == ConsoleKey.Q)
+                if (keyPressed == ConsoleKey.Q)
                 {
                     isValid = true;
                     return "quit";
                 }
-                else
-                {
-                    keyPressed = Console.ReadKey().Key;
-                }
+
+                keyPressed = Console.ReadKey().Key;
+
             }
             return "error";
         }
