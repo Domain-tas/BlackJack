@@ -1,0 +1,16 @@
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\bin\Debug\net5.0\BlackJack.exe
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\bin\Debug\net5.0\BlackJack.deps.json
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\bin\Debug\net5.0\BlackJack.runtimeconfig.json
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\bin\Debug\net5.0\BlackJack.runtimeconfig.dev.json
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\bin\Debug\net5.0\BlackJack.dll
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\bin\Debug\net5.0\ref\BlackJack.dll
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\bin\Debug\net5.0\BlackJack.pdb
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\obj\Debug\net5.0\BlackJack.csproj.AssemblyReference.cache
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\obj\Debug\net5.0\BlackJack.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\obj\Debug\net5.0\BlackJack.AssemblyInfoInputs.cache
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\obj\Debug\net5.0\BlackJack.AssemblyInfo.cs
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\obj\Debug\net5.0\BlackJack.csproj.CoreCompileInputs.cache
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\obj\Debug\net5.0\BlackJack.dll
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\obj\Debug\net5.0\ref\BlackJack.dll
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\obj\Debug\net5.0\BlackJack.pdb
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\obj\Debug\net5.0\BlackJack.genruntimeconfig.cache

@@ -1,0 +1,5 @@
+﻿//offset variable in DrawDisplay for an easy reset;
+//different Draw classes for player and dealer?
+implement Split
+implement Aces functionality
+add Rules
