@@ -156,6 +156,7 @@ namespace BlackJack.Controls
                 UpdateChips(-BetSize);
                 EndRound();
             }
+
             Console.WriteLine("Error");
         }
 
