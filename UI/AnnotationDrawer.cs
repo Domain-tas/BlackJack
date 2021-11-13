@@ -30,12 +30,34 @@ namespace BlackJack.UI
             Console.SetCursorPosition(horizontalOffset, dealerVerticalOffset - 3);
             Console.Write("#################");
 
+            Console.SetCursorPosition(horizontalOffset+16, dealerVerticalOffset - 5);
+            Console.Write("#################");
+            Console.SetCursorPosition(horizontalOffset+16, dealerVerticalOffset - 4);
+            Console.Write("# Value:        #");
+            Console.SetCursorPosition(horizontalOffset+16, dealerVerticalOffset - 3);
+            Console.Write("#################");
+
             Console.SetCursorPosition(horizontalOffset, playerVerticalOffset - 5);
             Console.Write("#################");
             Console.SetCursorPosition(horizontalOffset, playerVerticalOffset - 4);
             Console.Write("#   Your hand   #");
             Console.SetCursorPosition(horizontalOffset, playerVerticalOffset - 3);
             Console.Write("#################");
+
+            Console.SetCursorPosition(horizontalOffset+16, playerVerticalOffset - 5);
+            Console.Write("#################");
+            Console.SetCursorPosition(horizontalOffset+16, playerVerticalOffset - 4);
+            Console.Write("# Value:        #");
+            Console.SetCursorPosition(horizontalOffset+16, playerVerticalOffset - 3);
+            Console.Write("#################");
+        }
+
+        public void updateHandValue(int verticalOffset, int handValue)
+        {
+            Console.SetCursorPosition(horizontalOffset + 25, verticalOffset - 4);
+            Console.Write("   ");
+            Console.SetCursorPosition(horizontalOffset + 25, verticalOffset - 4);
+            Console.Write(handValue);
         }
     }
 }

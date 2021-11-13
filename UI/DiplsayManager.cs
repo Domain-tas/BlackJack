@@ -93,5 +93,14 @@ namespace BlackJack.UI
         {
 
         }
+        public void DrawHandValue(bool isPlayer, int handValue)
+        {
+            AnnotationDrawer annotationDrawer = new AnnotationDrawer(dealerVerticalDrawOffset, playerVerticalDrawOffset);
+            if (isPlayer)
+            {
+                annotationDrawer.updateHandValue(playerVerticalDrawOffset, handValue);
+            }
+            
+        }
     }
 }

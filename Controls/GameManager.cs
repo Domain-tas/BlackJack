@@ -42,6 +42,7 @@ namespace BlackJack.Controls
                 card = deck.GetTopCard();
                 player.IncreaseHand(card);
                 displayManager.DrawCards(card,"player", player.Hand.Count(), usingSplit);
+                displayManager.DrawHandValue(true, player.HandValue);
                 //Console.WriteLine("hit");
             }
             if (action == "stand")
@@ -103,7 +104,7 @@ namespace BlackJack.Controls
             bool isDrawBlackJack = !dealer.HasRevealed && player.HandValue == 21 && player.HandValue == dealer.HandValue;
             if (isBust)
             { 
-                displayManager.CleanTable();
+                //displayManager.CleanTable();
                 Console.WriteLine("It's a bust. Your hand value: " + player.HandValue);
                 EndRound();
             }
@@ -156,8 +157,7 @@ namespace BlackJack.Controls
                 UpdateChips(-BetSize);
                 EndRound();
             }
-
-            Console.WriteLine("Error");
+            //Console.WriteLine("Error");
         }
 
         public void EndRound()
@@ -195,12 +195,14 @@ namespace BlackJack.Controls
             card = deck.GetTopCard();
             player.IncreaseHand(card);
             displayManager.DrawCards(card, "player", player.Hand.Count, player.IsSplit);
+            displayManager.DrawHandValue(true, player.HandValue);
             card = deck.GetTopCard();
             dealer.IncreaseHand(card);
             displayManager.DrawCards(card, "dealer", dealer.Hand.Count, player.IsSplit);
             card = deck.GetTopCard();
             dealer.IncreaseHand(card);
             displayManager.DrawCards(card, "dealer", dealer.Hand.Count, player.IsSplit);
+
         }
 
         public void ManageSplit()

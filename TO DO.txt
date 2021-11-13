@@ -3,3 +3,4 @@
 implement Split
 implement Aces functionality
 add Rules
+cards have "1" as a rank
