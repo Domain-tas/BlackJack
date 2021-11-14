@@ -8,7 +8,7 @@ using BlackJack.Interfaces;
 
 namespace BlackJack.UI
 {
-    class CardImageGenerator : IDrawer
+    class CardImageGenerator : ICardDrawer
     {
         private char[,] cardImage;
         private Card card;

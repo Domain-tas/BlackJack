@@ -56,7 +56,7 @@ namespace BlackJack
             {
 
                 Console.Clear();
-                displayManager.DrawBet(player.Chips);
+                displayManager.DrawInitialScreen(player.Chips);
                 gameManager.UpdateChips(userInput.HandleBet());
                 Console.Clear();
                 Console.CursorVisible=false;

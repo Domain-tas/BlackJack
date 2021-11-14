@@ -15,7 +15,7 @@ namespace BlackJack.UI
 
         public AnnotationDrawer(int dealerDrawHeight, int playerDrawHeight)
         {
-            this.horizontalOffset = 15;
+            this.horizontalOffset = 8;
             this.dealerVerticalOffset = dealerDrawHeight;
             this.playerVerticalOffset = playerDrawHeight;
         }
@@ -45,26 +45,12 @@ namespace BlackJack.UI
             Console.Write("#################");
 
             Console.SetCursorPosition(horizontalOffset+16, playerVerticalOffset - 5);
-            Console.Write("#################");
+            Console.Write("##################");
             Console.SetCursorPosition(horizontalOffset+16, playerVerticalOffset - 4);
-            Console.Write("# Value:        #");
+            Console.Write("# Value:         #");
             Console.SetCursorPosition(horizontalOffset+16, playerVerticalOffset - 3);
-            Console.Write("#################");
+            Console.Write("##################");
         }
 
-        public void UpdateHandValue(int verticalOffset, int handValue, bool isPlayer)
-        {
-            Console.SetCursorPosition(horizontalOffset + 25, verticalOffset - 4);
-            Console.Write("      ");
-            Console.SetCursorPosition(horizontalOffset + 25, verticalOffset - 4);
-            if (isPlayer)
-            {
-                Console.Write(handValue);
-            }
-            else
-            {
-                Console.Write(handValue + " + ?");
-            }
-        }
     }
 }

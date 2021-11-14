@@ -9,20 +9,21 @@ namespace BlackJack.DataStructures
 {
     class Dealer : IParticipant
     {
-        private const int standNumber = 17;
-        private Stack<Card> hand;
-        private bool hasRevealed;
-        private int handValue;
+        private const int StandNumber = 17;
+        public int HandValue { get; set; }
 
-        public bool HasRevealed { get => hasRevealed; set => hasRevealed = value; }
-        public int HandValue { get => handValue; set => handValue = value; }
-        internal Stack<Card> Hand { get => hand; set => hand = value; }
+        public int HiddenValue { get; set; }
+
+        internal Stack<Card> Hand { get; set; }
+
+        public bool HasRevealed { get; set; }
 
         public Dealer()
         {
-            this.Hand = new Stack<Card>();
-            this.hasRevealed = false;
-            this.handValue = 0;
+            Hand = new Stack<Card>();
+            HandValue = 0;
+            HasRevealed = false;
+            HiddenValue = 0;
         }
 
         public void IncreaseHand(Card card)
@@ -32,21 +33,31 @@ namespace BlackJack.DataStructures
         }
         public void CountHandValue(int value)
         {
-            HandValue += value;
-        }
-        public void DealerStand(Deck deck)
-        {
-            while(HandValue<=17)
+            if (value == 1) value = 11;
+            if (Hand.Count == 1)
             {
-                IncreaseHand(deck.GetTopCard());
+                HiddenValue += value;
             }
+            else
+            {
+                HandValue += value;
+            }
+
         }
+        //public void DealerStand(Deck deck)
+        //{
+        //    while(HandValue<=17)
+        //    {
+        //        IncreaseHand(deck.GetTopCard());
+        //    }
+        //}
 
         public void Reset()
         {
             Hand = new Stack<Card>();
             HandValue = 0;
-            hasRevealed = false;
+            HasRevealed = false;
+            HiddenValue = 0;
         }
     }
 }

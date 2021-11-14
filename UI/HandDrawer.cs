@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using BlackJack.Interfaces;
 
@@ -17,7 +18,7 @@ namespace BlackJack.UI
 
         public HandDrawer(int offsetVertical, char[,] cardImage, int currentCardCount, bool isSplit)
         {
-            this.offsetHorizontal = 5;
+            offsetHorizontal = 5;
             this.offsetVertical = offsetVertical;
             this.cardImage = cardImage;
             this.currentCardCount = currentCardCount;
@@ -26,6 +27,7 @@ namespace BlackJack.UI
 
         public void Draw()
         {
+            Thread.Sleep(400);
             offsetVertical += currentCardCount;
             offsetHorizontal += currentCardCount * 3;
             if (isSplit)

@@ -1,34 +1,38 @@
-﻿using System;
+﻿using BlackJack.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using BlackJack.Interfaces;
 
 namespace BlackJack.DataStructures
 {
     class Player : IParticipant
     {
-        private int chips;
-        private Stack<Card> hand;
-        private bool isSplit;
-        private int handValue;
-        private Stack<Card> splitHand;
+        //private Stack<Card> splitHand;
+        private int aceCount;
+        //private Stack<Card> hand;
+        //private int handValue;
         //private string playerName;
 
         public Player(int chips)
         {
             Chips = chips;
             IsSplit = false;
-            handValue = 0;
-            hand = new Stack<Card>();
+            HandValue = 0;
+            Hand = new Stack<Card>();
+            SplitHand = new Stack<Card>();
+            aceCount = 0;
         }
 
-        public int Chips { get => chips; set => chips = value; }
-        public int HandValue { get => handValue; set => handValue = value; }
-        internal Stack<Card> Hand { get => hand; set => hand = value; }
-        public bool IsSplit { get => isSplit; set => isSplit = value; }
+        public int Chips { get; set; }
+
+        public int HandValue { get; set; }
+
+        internal Stack<Card> Hand { get; set; }
+
+        public bool IsSplit { get; set; }
+
         public Stack<Card> SplitHand { get; set; }
+
+        //public int AlternativeHandValue { get; set; }
 
         public void IncreaseHand(Card card)
         {
@@ -42,7 +46,22 @@ namespace BlackJack.DataStructures
         }
         public void CountHandValue(int value)
         {
-            handValue += value;
+            if (value == 1&& HandValue<10)
+            {
+                HandValue += 11;
+                aceCount++;
+            }
+            else if(aceCount!=0&&HandValue+value>21)
+            {
+                HandValue += value-10;
+                //AlternativeHandValue += value;
+                aceCount--;
+            }
+            else
+            {
+                HandValue += value;
+            }
+            
         }
         public void Reset()
         {
@@ -50,6 +69,8 @@ namespace BlackJack.DataStructures
             SplitHand = new Stack<Card>();
             IsSplit = false;
             HandValue = 0;
+            //AlternativeHandValue = 0;
+            aceCount = 0;
         }
     }
 }
