@@ -26,7 +26,6 @@ namespace BlackJack.UI
             int lineCount = 0;
             for (int i = 0; i < text.Length; i++)
             {
-                
                 Console.SetCursorPosition(horizontalSpace, verticalSpace + i + lineCount);
                 for (int j = 0; j < text[i].Length; j++)
                 {
@@ -49,17 +48,17 @@ namespace BlackJack.UI
             }
         }
 
-        //public void Clean()
-        //{
-        //    for (int i = 0; i < text.Length; i++)
-        //    {
-        //        Console.SetCursorPosition(horizontalSpace, verticalSpace + i);
-        //        for (int j = 0; j < drawableWidth; j++)
-        //        {
-        //            Console.Write(' ');
-        //        }
-                
-        //    }
-        //}
+        public void Clean()
+        {
+            for (int i = 0; i < text.Length; i++)
+            {
+                Console.SetCursorPosition(horizontalSpace, verticalSpace + i);
+                for (int j = 0; j < drawableWidth; j++)
+                {
+                    Console.Write(' ');
+                }
+
+            }
+        }
     }
 }

@@ -10,13 +10,13 @@ namespace BlackJack.DataStructures
     class Dealer : IParticipant
     {
         private const int StandNumber = 17;
-        public int HandValue { get; set; }
+        internal int HandValue { get; set; }
 
-        public int HiddenValue { get; set; }
+        internal int HiddenValue { get; set; }
 
-        internal Stack<Card> Hand { get; set; }
+        public Stack<Card> Hand { get; set; }
 
-        public bool HasRevealed { get; set; }
+        internal bool HasRevealed { get; set; }
 
         public Dealer()
         {
@@ -43,21 +43,6 @@ namespace BlackJack.DataStructures
                 HandValue += value;
             }
 
-        }
-        //public void DealerStand(Deck deck)
-        //{
-        //    while(HandValue<=17)
-        //    {
-        //        IncreaseHand(deck.GetTopCard());
-        //    }
-        //}
-
-        public void Reset()
-        {
-            Hand = new Stack<Card>();
-            HandValue = 0;
-            HasRevealed = false;
-            HiddenValue = 0;
         }
     }
 }

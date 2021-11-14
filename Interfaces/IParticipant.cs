@@ -11,6 +11,6 @@ namespace BlackJack.Interfaces
     {
         public void IncreaseHand(Card card);
         public void CountHandValue(int value);
-        public void Reset();
+        public Stack<Card> Hand { get; set; }
     }
 }

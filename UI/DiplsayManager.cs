@@ -33,8 +33,6 @@ namespace BlackJack.UI
 
         public void DrawAnnotations()
         {
-            //DrawRules();
-            //UpdateDealerValue();
             AnnotationDrawer annotationDrawer = new AnnotationDrawer(dealerVerticalDrawOffset, playerVerticalDrawOffset);
             annotationDrawer.Draw();
             DrawRules();
@@ -48,11 +46,11 @@ namespace BlackJack.UI
             handDrawer = new HandDrawer(playerVerticalDrawOffset, cardImage, currentCardCount, isSplit);
             handDrawer.Draw();
         }
-        public void DrawDealerCards(Card card, int currentCardCount)
+        public void DrawDealerCards(Card card, int currentCardCount, bool hasRevealed)
         {
             HandDrawer handDrawer;
             ICardDrawer cardImageGenerator;
-            if (currentCardCount == 1)
+            if (currentCardCount == 1 && !hasRevealed)
             {
                 cardImageGenerator = new CardImageGeneratorEmpty();
             }
@@ -114,22 +112,16 @@ namespace BlackJack.UI
         }
         public void CleanTable(string property)
         {
-            int cleanableWidth;
-            int cleanableHeight;
-            int leftPosition;
+            int cleanableWidth = gameWidth;
+            int cleanableHeight=15;
+            int leftPosition=0;
             int verticalPosition;
             if (property == "player")
             {
-                cleanableWidth = gameWidth;
-                cleanableHeight = playerVerticalDrawOffset - dealerVerticalDrawOffset;
-                leftPosition = 0;
                 verticalPosition = playerVerticalDrawOffset;
             }
             else if (property == "dealer")
             {
-                cleanableWidth = gameWidth;
-                cleanableHeight = playerVerticalDrawOffset - dealerVerticalDrawOffset;
-                leftPosition = 0;
                 verticalPosition = dealerVerticalDrawOffset;
             }
             else
@@ -139,7 +131,6 @@ namespace BlackJack.UI
             TableCleaner table = new TableCleaner(verticalPosition, cleanableWidth, cleanableHeight, leftPosition);
             table.Clean();
         }
-
         public void DrawTextBottom(string[] text)
         {
             int leftPosition = gameWidth / 3;
@@ -172,9 +163,9 @@ namespace BlackJack.UI
             TextDrawer textDrawer = new TextDrawer(verticalPosition, leftPosition, drawableWidth, text);
             textDrawer.Draw();
         }
-        public void UpdateDealerValue(int handValue)
+        public void UpdateDealerValue(int handValue, bool hasRevealed)
         {
-            ValueDrawerDealer valueDrawerDealer = new ValueDrawerDealer(dealerVerticalDrawOffset, handValue);
+            ValueDrawerDealer valueDrawerDealer = new ValueDrawerDealer(dealerVerticalDrawOffset, handValue, hasRevealed);
             valueDrawerDealer.Draw();
         }
         public void UpdatePlayerValue(int handValue)

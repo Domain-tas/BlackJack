@@ -7,7 +7,7 @@ namespace BlackJack.DataStructures
     class Player : IParticipant
     {
         //private Stack<Card> splitHand;
-        private int aceCount;
+        
         //private Stack<Card> hand;
         //private int handValue;
         //private string playerName;
@@ -19,21 +19,15 @@ namespace BlackJack.DataStructures
             HandValue = 0;
             Hand = new Stack<Card>();
             SplitHand = new Stack<Card>();
-            aceCount = 0;
+            AceCount = 0;
         }
 
         public int Chips { get; set; }
-
         public int HandValue { get; set; }
-
-        internal Stack<Card> Hand { get; set; }
-
+        public Stack<Card> Hand { get; set; }
         public bool IsSplit { get; set; }
-
         public Stack<Card> SplitHand { get; set; }
-
-        //public int AlternativeHandValue { get; set; }
-
+        public int AceCount { get; set; }
         public void IncreaseHand(Card card)
         {
             Hand.Push(card);
@@ -46,31 +40,21 @@ namespace BlackJack.DataStructures
         }
         public void CountHandValue(int value)
         {
-            if (value == 1&& HandValue<10)
+            if (value == 1&& HandValue<11)
             {
                 HandValue += 11;
-                aceCount++;
+                AceCount++;
             }
-            else if(aceCount!=0&&HandValue+value>21)
+            else if(AceCount!=0&&HandValue+value>21)
             {
                 HandValue += value-10;
-                //AlternativeHandValue += value;
-                aceCount--;
+                AceCount--;
             }
             else
             {
                 HandValue += value;
             }
             
-        }
-        public void Reset()
-        {
-            Hand=new Stack<Card>();
-            SplitHand = new Stack<Card>();
-            IsSplit = false;
-            HandValue = 0;
-            //AlternativeHandValue = 0;
-            aceCount = 0;
         }
     }
 }

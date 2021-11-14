@@ -22,14 +22,14 @@ namespace BlackJack.UI
 
         public void Clean()
         {
-            int width = 0;
+            //int width = 0;
             for (int i = 0; i < lineCount; i++)
             {
-                if (width <= horizontalSpace)
+                Console.SetCursorPosition(leftPosition, verticalSpace+i);
+                for (int j = 0; j <horizontalSpace;j++) 
                 {
-                    Console.SetCursorPosition(leftPosition, verticalSpace);
                     Console.Write(' ');
-                    width++;
+                    //width++;
                 }
             }
             

@@ -31,7 +31,7 @@ namespace BlackJack.UI
             offsetVertical += currentCardCount;
             offsetHorizontal += currentCardCount * 3;
             if (isSplit)
-                offsetHorizontal *= 3;
+                offsetHorizontal += 16;
             int numberDrawn = 0;
             int linesDrawn = 0;
             Console.SetCursorPosition(offsetHorizontal, offsetVertical);

@@ -12,14 +12,14 @@ namespace BlackJack.Controls
             {
                 if (Int32.TryParse(input, out int betAmount))
                 {
-                    isValid = true;
-                    return betAmount;
+                    if (betAmount > 0)
+                    {
+                        isValid = true;
+                        return betAmount;
+                    }
                 }
-                else
-                {
-                    Console.WriteLine("Invalid input. Try again:");
-                    input = Console.ReadLine();
-                }
+                Console.WriteLine("Invalid input. Try again:");
+                input = Console.ReadLine();
             }
             return 0;
 
@@ -50,6 +50,11 @@ namespace BlackJack.Controls
                 {
                     isValid = true;
                     return "double";
+                }
+                if (keyPressed == ConsoleKey.Q)
+                {
+                    isValid = true;
+                    return "quit";
                 }
 
                 //Console.WriteLine("Invalid input. Try again:");
