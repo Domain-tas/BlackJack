@@ -111,6 +111,7 @@ namespace BlackJack.Controls
         {
             RedrawDealerHand();
             dealer.HandValue += dealer.HiddenValue;
+            displayManager.UpdateDealerValue(dealer.HandValue, dealer.HasRevealed);
             while (dealer.HandValue < 17)
             {
                 Deal(false);
