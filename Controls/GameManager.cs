@@ -68,7 +68,7 @@ namespace BlackJack.Controls
             }
             if (action == "double")
             {
-                if (canDouble&&!hasDoubled&& player.Chips >= BetSize)
+                if (canDouble && !hasDoubled && player.Chips >= BetSize)
                 {
                     UpdateChips(BetSize);
                     string[] text = { "Your bet: " + betSize };
@@ -87,6 +87,8 @@ namespace BlackJack.Controls
                 {
                     canSplit = false;
                     UpdateChips(BetSize);
+                    string[] text = { "Your bet: " + (betSize + betSizeSplit) };
+                    displayManager.DrawTextCenter(text);
                     ManageSplit();
                 }
                 else
@@ -124,29 +126,29 @@ namespace BlackJack.Controls
         }
         public void EndGameCheck()
         {
-            bool usingSplitCheck = usedSplit && dealer.HasRevealed&&isSecondCheck;
+            bool usingSplitCheck = usedSplit && dealer.HasRevealed && isSecondCheck;
             string[] text = { "" };
             bool isBust = player.HandValue > 21;
             bool hasWon = player.HandValue > dealer.HandValue;
             bool hasWonBust = dealer.HandValue > 21;
             bool isDraw = player.HandValue == dealer.HandValue;
             bool hasLost = player.HandValue < dealer.HandValue;
-            bool hasLostBlackJack = dealer.HandValue == 21 && player.HandValue != dealer.HandValue && dealer.Hand.Count==2;
-            bool hasWonBlackJack = player.HandValue == 21 && player.HandValue != dealer.HandValue && player.Hand.Count==2;
+            bool hasLostBlackJack = dealer.HandValue == 21 && player.HandValue != dealer.HandValue && dealer.Hand.Count == 2;
+            bool hasWonBlackJack = player.HandValue == 21 && player.HandValue != dealer.HandValue && player.Hand.Count == 2;
             bool isDrawBlackJack = player.HandValue == 21 && player.HandValue == dealer.HandValue;
             if (isBust)
             {
                 if (player.IsSplit)
                 {
-                    text = new[] { "Your split hand has busted."};
+                    text = new[] { "Your split hand has busted." };
+                    displayManager.DrawTextCenter(text);
                     EndSplit();
                 }
                 else
                 {
-
                     if (usedSplit)
                     {
-                        text = new[] {""};
+                        text = new[] { "" };
                         EndRound();
                     }
                     else
@@ -156,12 +158,9 @@ namespace BlackJack.Controls
                         displayManager.DrawTextCenter(text);
                         return;
                     }
-                    
                 }
-                
-                return;
             }
-            if (dealer.HasRevealed)
+            else if (dealer.HasRevealed)
             {
                 if (hasWonBust)
                 {
@@ -188,10 +187,9 @@ namespace BlackJack.Controls
                 else if (hasWonBlackJack)
                 {
                     text = new[] { "You've won! It's a BlackJack: " + player.HandValue, "Dealer's hand value: " + dealer.HandValue };
-                    UpdateChips(BetSize /2);
+                    UpdateChips(BetSize / 2);
                     AwardPlayer();
                     EndRound();
-                    hasWon = false;
                 }
                 else if (isDrawBlackJack)
                 {
@@ -199,20 +197,20 @@ namespace BlackJack.Controls
                     UpdateChips(-BetSize);
                     EndRound();
                 }
-                if (hasWon)
+                else if (hasWon)
                 {
                     text = new[] { "You've won! Your hand value: " + player.HandValue, "Dealer's hand value: " + dealer.HandValue };
                     AwardPlayer();
                     EndRound();
                 }
-                if (!IsPlayingRound&&!player.IsSplit && !isSecondCheck)
+                if (!IsPlayingRound && !player.IsSplit && !isSecondCheck)
                 {
                     displayManager.DrawTextCenter(text);
                 }
             }
             if (!IsPlayingRound && isSecondCheck)
             {
-                text = new[] { "This round chip balance: "+ (player.Chips- initialBalance)+"       "};
+                text = new[] { "This round chip balance: " + (player.Chips - initialBalance) + "       " };
                 displayManager.DrawTextCenter(text);
             }
             if (usedSplit && dealer.HasRevealed && !isSecondCheck)
@@ -277,7 +275,7 @@ namespace BlackJack.Controls
 
         public void GameOver()
         {
-            string[] text = { "   G A M E  O V E R   ", "You've lost all of your chips", ">> Press any key to Exit <<" };
+            string[] text = { "   G  A  M  E    O  V  E  R   ", "You've lost all of your chips", ">> Press any key to Exit <<" };
             displayManager.DrawTextCenter(text);
             player.Chips = 100;
             EndRound();
