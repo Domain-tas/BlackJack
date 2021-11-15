@@ -43,7 +43,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"Domain-tas_BlackJack" /o:"domain-tas" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          dotnet restore src/BlackJack.sln.sln
-          dotnet test src/BlackJack.sln --collect "Code Coverage"
-          dotnet build src/BlackJack.sln --configuration release
+          dotnet build src/BlackJack.sln
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
