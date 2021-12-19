@@ -12,10 +12,12 @@ namespace BlackJack.UI
         private int horizontalOffset;
         private int dealerVerticalOffset;
         private int playerVerticalOffset;
+        private int horizontalOffsetScore;
 
         public AnnotationDrawer(int dealerDrawHeight, int playerDrawHeight)
         {
             this.horizontalOffset = 8;
+            this.horizontalOffsetScore = 16;
             this.dealerVerticalOffset = dealerDrawHeight;
             this.playerVerticalOffset = playerDrawHeight;
         }
@@ -30,11 +32,11 @@ namespace BlackJack.UI
             Console.SetCursorPosition(horizontalOffset, dealerVerticalOffset - 3);
             Console.Write("#################");
 
-            Console.SetCursorPosition(horizontalOffset+16, dealerVerticalOffset - 5);
+            Console.SetCursorPosition(horizontalOffset+horizontalOffsetScore, dealerVerticalOffset - 5);
             Console.Write("#################");
-            Console.SetCursorPosition(horizontalOffset+16, dealerVerticalOffset - 4);
+            Console.SetCursorPosition(horizontalOffset+ horizontalOffsetScore, dealerVerticalOffset - 4);
             Console.Write("# Value:        #");
-            Console.SetCursorPosition(horizontalOffset+16, dealerVerticalOffset - 3);
+            Console.SetCursorPosition(horizontalOffset+ horizontalOffsetScore, dealerVerticalOffset - 3);
             Console.Write("#################");
 
             Console.SetCursorPosition(horizontalOffset, playerVerticalOffset - 5);
@@ -44,11 +46,11 @@ namespace BlackJack.UI
             Console.SetCursorPosition(horizontalOffset, playerVerticalOffset - 3);
             Console.Write("#################");
 
-            Console.SetCursorPosition(horizontalOffset+16, playerVerticalOffset - 5);
+            Console.SetCursorPosition(horizontalOffset+ horizontalOffsetScore, playerVerticalOffset - 5);
             Console.Write("##################");
-            Console.SetCursorPosition(horizontalOffset+16, playerVerticalOffset - 4);
+            Console.SetCursorPosition(horizontalOffset+ horizontalOffsetScore, playerVerticalOffset - 4);
             Console.Write("# Value:         #");
-            Console.SetCursorPosition(horizontalOffset+16, playerVerticalOffset - 3);
+            Console.SetCursorPosition(horizontalOffset+ horizontalOffsetScore, playerVerticalOffset - 3);
             Console.Write("##################");
         }
 

@@ -12,6 +12,7 @@ namespace BlackJack.UI
         private int verticalOffset;
         private int handValue;
         private int horizontalOffset;
+        private int handValueHorizontalOffset;
         private bool hasRevealed;
 
         public ValueDrawerDealer(int verticalOffset, int handValue, bool hasRevealed)
@@ -20,13 +21,14 @@ namespace BlackJack.UI
             this.verticalOffset = verticalOffset;
             this.handValue = handValue;
             this.hasRevealed = hasRevealed;
+            this.handValueHorizontalOffset = 25;
         }
 
         public void Draw()
         {
-            Console.SetCursorPosition(horizontalOffset + 25, verticalOffset - 4);
+            Console.SetCursorPosition(horizontalOffset + handValueHorizontalOffset, verticalOffset - 4);
             Console.Write("       ");
-            Console.SetCursorPosition(horizontalOffset + 25, verticalOffset - 4);
+            Console.SetCursorPosition(horizontalOffset + handValueHorizontalOffset, verticalOffset - 4);
             if (hasRevealed)
             {
                 Console.Write(handValue);

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackJack.UI
 {
+    //ŠALINAMA
     class Texts
     {
         private string[] betText;

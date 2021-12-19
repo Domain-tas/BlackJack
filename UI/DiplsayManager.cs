@@ -29,8 +29,6 @@ namespace BlackJack.UI
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.ForegroundColor = ConsoleColor.White;
         }
-
-
         public void DrawAnnotations()
         {
             AnnotationDrawer annotationDrawer = new AnnotationDrawer(dealerVerticalDrawOffset, playerVerticalDrawOffset);
@@ -70,10 +68,6 @@ namespace BlackJack.UI
             DrawTextTop(text);
             text = new[] { "Your current credits: " + chips, "Place your bet: " };
             DrawTextCenter(text);
-            //Console.SetCursorPosition(28, 15);
-            //Console.Write("Your current credits: " + chips);
-            //Console.SetCursorPosition(30, 17);
-            //Console.Write("Place your bet: ");
         }
         public void DrawRules()
         {

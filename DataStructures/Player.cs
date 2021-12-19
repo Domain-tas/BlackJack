@@ -6,12 +6,6 @@ namespace BlackJack.DataStructures
 {
     class Player : IParticipant
     {
-        //private Stack<Card> splitHand;
-        
-        //private Stack<Card> hand;
-        //private int handValue;
-        //private string playerName;
-
         public Player(int chips)
         {
             Chips = chips;
@@ -54,7 +48,6 @@ namespace BlackJack.DataStructures
             {
                 HandValue += value;
             }
-            
         }
     }
 }

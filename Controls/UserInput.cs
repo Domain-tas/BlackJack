@@ -56,14 +56,9 @@ namespace BlackJack.Controls
                     isValid = true;
                     return "quit";
                 }
-
-                //Console.WriteLine("Invalid input. Try again:");
                 keyPressed = Console.ReadKey().Key;
             }
             return "error";
-
-
-
         }
 
         internal string HandleRepeat()

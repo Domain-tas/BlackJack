@@ -13,3 +13,4 @@ C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\obj\Release\net5.0\B
 C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\obj\Release\net5.0\ref\BlackJack.dll
 C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\obj\Release\net5.0\BlackJack.pdb
 C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\obj\Release\net5.0\BlackJack.genruntimeconfig.cache
+C:\Users\Domas\Desktop\Programavimas\Repositories\BlackJack\obj\Release\net5.0\BlackJack.csproj.AssemblyReference.cache

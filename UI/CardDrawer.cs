@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlackJack.UI
 {
+    //ŠALINAMA
     class CardDrawer
     {
         private int dealerOffsetVertical;

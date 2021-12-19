@@ -10,7 +10,6 @@ namespace BlackJack.UI
     class CardImageGeneratorEmpty : ICardDrawer
     {
         private char[,] cardImage;
-        //private Card card;
 
         public CardImageGeneratorEmpty()
         {
