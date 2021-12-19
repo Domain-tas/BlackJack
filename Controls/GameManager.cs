@@ -26,23 +26,17 @@ namespace BlackJack.Controls
         private int initialBalance;
         private static GameManager _instance;
 
-        private GameManager()//(Deck cardDeck, Player currentPlayer, Dealer cardDealer, DiplsayManager displayManager)
+        private GameManager()
         {
-            //this.cardDeck = cardDeck;
-            //this.currentPlayer = currentPlayer;
             betSize = 0;
             betSizeSplit = 0;
-            //this.cardDealer = cardDealer;
             IsPlayingRound = true;
             isPlaying = true;
-            //this.displayManager = displayManager;
             hasDoubled = false;
             canSplit = false;
             canDouble = false;
             splitValue = 0;
             isSecondCheck = false;
-            //initialBalance = CurrentPlayer.Chips;
-            //_instance = true;
         }
         public static GameManager GetGameManager
         {
