@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackJack.DataStructures
 {
-    class Deck
+    public class Deck
     {
         private readonly string[] suites = { "+", "@","O", "#" };
         private static Random rng = new Random();

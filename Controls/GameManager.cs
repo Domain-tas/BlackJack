@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 
 namespace BlackJack.Controls
 {
-    class GameManager
+    public class GameManager
     {
         private int betSize;
         private int betSizeSplit;
@@ -319,7 +319,7 @@ namespace BlackJack.Controls
             DisplayManager.DrawTextBottom(text);
             _instance = null;
         }
-        private void ResetPlayer()
+        public void ResetPlayer()
         {
             CurrentPlayer.Hand = new Stack<Card>();
             CurrentPlayer.SplitHand = new Stack<Card>();
@@ -327,7 +327,7 @@ namespace BlackJack.Controls
             CurrentPlayer.HandValue = 0;
             CurrentPlayer.AceCount = 0;
         }
-        internal void UpdateChips(int betAmount)
+        public void UpdateChips(int betAmount)
         {
 
             if (betAmount > CurrentPlayer.Chips)
@@ -396,7 +396,5 @@ namespace BlackJack.Controls
                 this.canDouble = true;
             }
         }
-
-
     }
 }

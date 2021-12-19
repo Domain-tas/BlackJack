@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BlackJack.DataStructures
 {
-    class Player : IParticipant
+    public class Player : IParticipant
     {
         public Player(int chips)
         {

@@ -8,7 +8,7 @@ using BlackJack.Interfaces;
 
 namespace BlackJack.UI
 {
-    class DiplsayManager
+    public class DiplsayManager
     {
         private int playerVerticalDrawOffset;
         private int dealerVerticalDrawOffset;

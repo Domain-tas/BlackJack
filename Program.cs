@@ -21,7 +21,6 @@ namespace BlackJack
                 Card card;
                 Dealer dealer = new Dealer();
                 DiplsayManager displayManager = new DiplsayManager();
-                //GameManager gameManager = new GameManager(deck, player, dealer, displayManager);
                 GameManager gameManager = GameManager.GetGameManager;
                 gameManager.DisplayManager = displayManager;
                 gameManager.CardDeck = deck;
@@ -31,7 +30,7 @@ namespace BlackJack
                 UserInput userInput = new UserInput();
                 Console.Clear();
                 displayManager.DrawInitialScreen(player.Chips);
-                if (player.Chips == 0)
+                if (player.Chips <= 0)
                 {
                     gameManager.GameOver();
                     Console.ReadKey();
