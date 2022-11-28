@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BlackJack.DataStructures
 {
-    class Deck
+    public class Deck
     {
-        //private readonly string[] suites = {"diamonds","clubs","hearts","spades"};
         private readonly string[] suites = { "+", "@","O", "#" };
         private static Random rng = new Random();
         private List<Card> deckOfCards;
@@ -30,7 +29,6 @@ namespace BlackJack.DataStructures
                     deckOfCards.Add(card);          
                 }
             }
-            //return deckOfCards;
         }
         public void ShuffleDeck()
         {

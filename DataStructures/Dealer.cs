@@ -7,7 +7,7 @@ using BlackJack.Interfaces;
 
 namespace BlackJack.DataStructures
 {
-    class Dealer : IParticipant
+    public class Dealer : IParticipant
     {
         private const int StandNumber = 17;
         internal int HandValue { get; set; }
