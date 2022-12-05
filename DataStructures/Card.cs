@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlackJack.DataStructures
 {
-    class Card
+    public class Card
     {
         private int value;
         private string suite;

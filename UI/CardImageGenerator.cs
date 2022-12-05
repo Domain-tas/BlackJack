@@ -74,7 +74,6 @@ namespace BlackJack.UI
 
                 }
             }
-            //return cardImage;
         }
     }
 }

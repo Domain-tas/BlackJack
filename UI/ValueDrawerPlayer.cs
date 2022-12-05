@@ -10,7 +10,7 @@ namespace BlackJack.UI
     {
         private int verticalOffset;
         private int handValue;
-        //private int alternativeHandValue;
+        private int handValueHorizontalOffset;
         private int horizontalOffset;
 
         public ValueDrawerPlayer(int verticalOffset, int handValue)
@@ -18,14 +18,14 @@ namespace BlackJack.UI
             horizontalOffset = 8;
             this.verticalOffset = verticalOffset;
             this.handValue = handValue;
-            //this.alternativeHandValue = alternativeHandValue;
+            handValueHorizontalOffset = 25;
         }
 
         public void Draw()
         {
-            Console.SetCursorPosition(horizontalOffset + 25, verticalOffset - 4);
+            Console.SetCursorPosition(horizontalOffset + handValueHorizontalOffset, verticalOffset - 4);
             Console.Write("        ");
-            Console.SetCursorPosition(horizontalOffset + 25, verticalOffset - 4);
+            Console.SetCursorPosition(horizontalOffset + handValueHorizontalOffset, verticalOffset - 4);
             Console.Write(handValue);
         }
     }
