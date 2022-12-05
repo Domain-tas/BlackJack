@@ -7,22 +7,14 @@ public class EditProfile implements Initializable {
     public TextField password;
     @FXML
     public TextArea information;
-    User user;
+    private User user;
     private int userId;
 
-    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CourseSystemMng");
-    UserHibControl userHibControl = new UserHibControl(entityManagerFactory);
+    private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CourseSystemMng");
+    private UserHibControl userHibControl = new UserHibControl(entityManagerFactory);
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    }
-
-    public TextArea getInformation() {
-        return information;
-    }
-
-    public void setInformation(TextArea information) {
-        this.information = information;
     }
 
     public void confirmChange(ActionEvent actionEvent) {
@@ -30,27 +22,19 @@ public class EditProfile implements Initializable {
         user.setInformation(information.getText());
 
         if (!checkIfValid(name.getText()) || !isValidPassword(password.getText()) || !isValidEmail(email.getText())) {
-            alertMsg();
-        }
-        else {
+            alertMsg("Šaunu!", "Duomenys sėkmingai pakeisti");
+        } else {
             user.setUsername(name.getText());
             user.setPassword(password.getText());
             user.setEmail(email.getText());
             userHibControl.editUser(user);
-            successAlert();
+            alertMsg("Klaida!", "Klaidingai įvesti duomenys");
         }
-    }
-
-    public void setEditProfile(int userId) {
-            this.userId = userId;
-            User user = userHibControl.getUserById(userId);
-            setData(userId, user);
     }
 
     public void setData(int userId, User user) {
         this.userId = userId;
         this.user = user;
-        user = userHibControl.getUserById(user.getId());
         name.setText(user.getUsername());
         information.setText(user.getInformation());
         email.setText(user.getEmail());
@@ -68,12 +52,11 @@ public class EditProfile implements Initializable {
         stage.show();
     }
 
-    public boolean checkIfValid(String fieldValue) {
+    public boolean isValidLength(String fieldValue) {
         return fieldValue.length() > 0 && fieldValue.length() < 15;
     }
 
-    public static boolean isValidPassword(String password)
-    {
+    public static boolean isValidPassword(String password) {
 
         String regex = "^(?=.*[0-9])"
                 + "(?=.*[a-z])(?=.*[A-Z])"
@@ -99,25 +82,19 @@ public class EditProfile implements Initializable {
                 "A-Z]{2,7}$";
 
         Pattern pat = Pattern.compile(emailRegex);
-        if (email == null)
+        
+        if (email == null) {
             return false;
+        }
+        
         return pat.matcher(email).matches();
     }
 
-    public void alertMsg() {
+    public void alertMsg(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Klaida!");
+        alert.setTitle(title);
         alert.setHeaderText(null);
-        alert.setContentText("Klaidingai įvesti duomenys");
-
-        alert.showAndWait();
-    }
-
-    public void successAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Klaida!");
-        alert.setHeaderText(null);
-        alert.setContentText("Duomenys sėkmingai pakeisti");
+        alert.setContentText(message);
 
         alert.showAndWait();
     }
